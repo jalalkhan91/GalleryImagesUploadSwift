@@ -1,0 +1,6 @@
+framework module Pods_GalleryImagesUploadSwift {
+  umbrella header "Pods-GalleryImagesUploadSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}
