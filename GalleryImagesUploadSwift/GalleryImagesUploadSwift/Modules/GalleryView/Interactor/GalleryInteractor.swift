@@ -11,31 +11,47 @@ import Alamofire
 
 class GalleryInteractor: GalleryPresentorToInteractorProtocol{
 
+    // MARK: Properties
+    var pulledToRefresh: Bool?
+    var cursor: String?
     var presenter: GalleryInteractorToPresenterProtocol?
-    
-    func fetchImagesAPI(){
-        
+    var apiManager = APIManager.shared
+
+    // MARK: Methods
+     func convertImageToBase64(image: UIImage) -> String {
+        let imageData = image.jpegData(compressionQuality: 0.5)!
+        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 3))
     }
     
-//    func fetchImages(pageNumber:Int, searchString:String) {
-                
-//        let urlStr = URLs.k_BASE_URL+searchString+"&page="+"\(pageNumber)"
+    func fetchImagesAPI(cursorNext:String){
 
-//        Alamofire.request(urlStr).response { response in
-//            if(response.response?.statusCode == 200){
-//                guard let data = response.data else { return }
-//                do {
-//                    let decoder = JSONDecoder()
-//                    let newsResponse = try decoder.decode(MoviesData.self, from: data)
+        if self.pulledToRefresh == true{
+            self.cursor = ""
+        }else{
+            self.cursor = cursorNext
+        }
+        
+        self.apiManager.getGalleryImages(self.cursor ?? "") {(isSuccessful, errorMessage, arrUsers) in
+
+                if isSuccessful{
+                    self.presenter?.galleryUpdated(imagesArray: arrUsers?.resources ?? [GalleryResource](), nextCursor: arrUsers?.nextCursor ?? "")
+                }
+                else{
+                    self.presenter?.imageFetchedFailed(error: errorMessage ?? "Something went wrong...")
+                }
+            }
+    }
+    
+    func uploadImage(image: UIImage) {
+//        let base64Image = convertImageToBase64(image: image)
 //
-//                    self.presenter?.moviesFetched(movies: newsResponse.results!)
-//                } catch let error {
-//                    print(error)
-//                }
+//        repository?.uploadImage(base64Image: "data:image/jpg;base64,\(base64Image)", success: { (galleryImage) in
+//            self.gallaryLoadState.addNewItem(item: galleryImage)
+//        }, fail: { (error) in
+//            if let error = error {
+//                self.presenter?.errorOccured(error: error)
 //            }
-//            else {
-//                self.presenter?.moviesFetchedFailed()
-//            }
-//        }
-//    }
+//        })
+        
+    }
 }

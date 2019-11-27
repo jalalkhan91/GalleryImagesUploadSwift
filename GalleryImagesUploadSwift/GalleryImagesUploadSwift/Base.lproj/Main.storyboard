@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,38 +15,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uno-2D-0ho">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kkt-15-OqT">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2P1-Wy-Bog">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCollectionViewCell" id="oAa-0g-yQv" customClass="GalleryCollectionViewCell" customModule="GalleryImagesUploadSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SJv-eV-v2l">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GalleryTableViewCell" rowHeight="300" id="o0N-fF-HX3" customClass="GalleryTableViewCell" customModule="GalleryImagesUploadSwift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o0N-fF-HX3" id="iiQ-zw-Lf9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-PB-AHQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="290"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zGi-PB-AHQ" firstAttribute="leading" secondItem="iiQ-zw-Lf9" secondAttribute="leading" id="4uH-GU-3nI"/>
+                                                <constraint firstItem="zGi-PB-AHQ" firstAttribute="top" secondItem="iiQ-zw-Lf9" secondAttribute="top" id="F0y-AG-HiZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="zGi-PB-AHQ" secondAttribute="trailing" id="lHL-4u-7hd"/>
+                                                <constraint firstAttribute="bottom" secondItem="zGi-PB-AHQ" secondAttribute="bottom" constant="10" id="wWi-ws-Lh8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="zGi-PB-AHQ" id="F23-9F-w2M"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="uno-2D-0ho" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6KX-GR-cLm"/>
-                            <constraint firstItem="uno-2D-0ho" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JsF-l8-gTc"/>
-                            <constraint firstItem="uno-2D-0ho" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MTV-78-X8A"/>
-                            <constraint firstItem="uno-2D-0ho" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ly5-x9-MDX"/>
+                            <constraint firstItem="Kkt-15-OqT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3nd-HD-qMO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kkt-15-OqT" secondAttribute="bottom" id="AlP-Z3-r5Z"/>
+                            <constraint firstItem="Kkt-15-OqT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IQ1-Zl-Hij"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kkt-15-OqT" secondAttribute="trailing" id="iha-oi-XG0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Tc7-g5-2NP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="io5-iK-onf">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="BYZ-38-t0r" id="Nok-5K-Qao"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="collectionView" destination="uno-2D-0ho" id="fcP-TY-7wb"/>
+                        <outlet property="buttonAddImage" destination="io5-iK-onf" id="JKn-SU-O3H"/>
+                        <outlet property="tableView" destination="Kkt-15-OqT" id="r9F-58-sS5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -15,22 +15,24 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
 
     class func createGalleryView() -> UIViewController{
         
-        let view = mainstoryboard.instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
+        // Initializing Gallery module components
+        let view = mainstoryboard.instantiateViewController(withIdentifier: Constants.galleryViewController) as! GalleryViewController
 
         let presenter: GalleryViewToPresenterProtocol & GalleryInteractorToPresenterProtocol = GalleryPresenter()
         let interactor: GalleryPresentorToInteractorProtocol = GalleryInteractor()
         let router: GalleryPresenterToRouterProtocol = GalleryRouter()
-        
+
+        // Connecting components
         view.presenter = presenter
         presenter.view = view
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
-            
+        
         return view
     }
     
     static var mainstoryboard: UIStoryboard{
-        return UIStoryboard(name:"Main",bundle: Bundle.main)
+        return UIStoryboard(name:Constants.mainStoryBoard,bundle: Bundle.main)
     }
 }

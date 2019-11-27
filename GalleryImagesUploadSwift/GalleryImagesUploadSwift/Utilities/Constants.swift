@@ -10,9 +10,20 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let imageCellName = "GalleryCollectionViewCell"
-    static let iPadCellSize: CGFloat = 320
-    static let cellSpacing: CGFloat = 1
-    static let numberOfCellsPerRow: CGFloat = 3
-    static let iPhoneHeightToWidthRatio: CGFloat = 2
+    static let galleryCellName = "GalleryTableViewCell"
+    static let galleryViewController = "GalleryViewController"
+
+    static let mainStoryBoard = "Main"
 }
+
+struct URLs {
+//    static let k_BASE_URL = "https://api.cloudinary.com/v1_1/ddivp0mah/resources/image?next_cursor="
+    static let k_BASE_URL = "https://api.cloudinary.com/v1_1/ddivp0mah/"
+
+}
+
+public enum Endpoints: String {
+    case getImages = "resources/image?next_cursor="
+    case uploadImage = "image/upload"
+}
+

@@ -8,8 +8,10 @@ target 'GalleryImagesUploadSwift' do
   # Pods for GalleryImagesUploadSwift
 
   pod 'Alamofire'
-
-
+  pod 'ESPullToRefresh'
+  pod 'SVProgressHUD'
+  pod 'SDWebImage'
+  
   target 'GalleryImagesUploadSwiftTests' do
     inherit! :search_paths
     # Pods for testing

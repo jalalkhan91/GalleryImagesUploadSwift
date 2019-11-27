@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import SDWebImage
+import ESPullToRefresh
 
 class GalleryViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    // MARK: Properties
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var buttonAddImage: UIBarButtonItem!
     
     var presenter: GalleryViewToPresenterProtocol?{
         didSet{
@@ -19,64 +23,90 @@ class GalleryViewController: UIViewController {
         }
     }
     
-    var iPhoneCellWidth: CGFloat {
-        return (self.view.frame.width / Constants.numberOfCellsPerRow) - (Constants.numberOfCellsPerRow * Constants.cellSpacing)
-    }
-    var iPhoneCellHeight: CGFloat {
-        return iPhoneCellWidth * Constants.iPhoneHeightToWidthRatio
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-
-        presenter?.loadImages()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.tableFooterView = UIView.init(frame: .zero)
+        
+        self.customizeUI()
+        presenter?.loadImages(pulledToRefresh: true)
     }
+    
+    func customizeUI(){
+        self.tableView.es.addPullToRefresh {
+            [unowned self] in
 
+            self.tableView.es.resetNoMoreData()
+
+            self.presenter?.loadImages(pulledToRefresh: true)
+        }
+        self.tableView.es.addInfiniteScrolling {
+            [unowned self] in
+
+            self.presenter?.loadImages(pulledToRefresh: false)
+        }
+    }
+    
+    
+    // MARK: Actions
+    @IBAction func addButtonPressed(_ sender: Any) {
+        
+    }
+    
 }
 
+
+// MARK:- GalleryPresenterToViewProtocol Methods
 extension GalleryViewController:GalleryPresenterToViewProtocol{
     
     func reloadCollectionView() {
-        self.collectionView.reloadData()
+        self.tableView.reloadData()
+    }
+        
+    func showError(message: String) {
+        self.showAlert(title: "Alert!", message: message)
     }
     
+    func showLoader(){
+        self.showHud()
+    }
     
+    func hideLoader(){
+        self.hideHud()
+    }
+
+    func stopPagination(){
+        self.tableView.es.stopLoadingMore()
+    }
     
-    func showError() {
-        self.showAlert(title: "Alert!", message: "Some error occured. Please try again.")
+    func noMoreData(){
+        self.tableView.es.noticeNoMoreData()
+    }
+    
+    func resetNoMoreData(){
+        self.tableView.es.resetNoMoreData()
+    }
+    
+    func stopPullToRefresh(){
+        self.tableView.es.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
     }
 }
 
-
-extension GalleryViewController : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//MARK:- UITableView Delegates
+extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfItems() ?? 0
     }
-   
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.imageCellName, for: indexPath) as! GalleryCollectionViewCell
-        cell.backgroundColor = UIColor.yellow
-//           cell.configure(image: presenter!.itemAt(index: indexPath.item))
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.galleryCellName, for: indexPath) as! GalleryTableViewCell
+        
+        let item = presenter?.itemAt(index: indexPath.row)
+        cell.cellImageView.sd_setImage(with: URL.init(string: (item?.url)!))
+        
         return cell
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-           return CGSize(width: Constants.iPadCellSize, height: Constants.iPadCellSize)
-        }
-        return CGSize(width: iPhoneCellWidth, height: iPhoneCellHeight)
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//           presenter?.usedDidSelectItem(index: indexPath.item)
     }
 }
