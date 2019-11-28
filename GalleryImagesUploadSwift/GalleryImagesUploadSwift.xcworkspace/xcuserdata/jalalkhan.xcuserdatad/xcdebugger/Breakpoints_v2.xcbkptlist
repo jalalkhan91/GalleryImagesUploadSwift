@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CF03B003-6C51-4308-B81D-E44C2C3D8E9F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GalleryImagesUploadSwift/Modules/GalleryView/Presenter/GalleryPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "loadImages(pulledToRefresh:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "103ED2CD-C647-4CDF-80E6-E786B32EFBF3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -71,32 +55,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DA2A77FF-C164-4B61-8745-42807195BEB4"
+            uuid = "01EDAAC0-43EC-4F9E-A8DA-BE8A0D1BFE99"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GalleryImagesUploadSwift/Modules/GalleryView/Interactor/GalleryInteractor.swift"
+            filePath = "GalleryImagesUploadSwift/APIManager/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "fetchImagesAPI(cursorNext:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "uploadImage(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90D130B7-CF4B-4FDE-85CD-E388BFD190A6"
+            uuid = "EE31A9DD-3F6E-4B61-A3A8-FF47F5C5A9DE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GalleryImagesUploadSwift/Modules/GalleryView/Presenter/GalleryPresenter.swift"
+            filePath = "GalleryImagesUploadSwift/APIManager/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "itemAt(index:)"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "uploadImage(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DBB8227-54A7-4BE8-9278-31D593AF7896"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GalleryImagesUploadSwift/APIManager/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "uploadImage(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "250BD6F2-4F7F-452C-8FD7-2EB90BC8C3D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GalleryImagesUploadSwift/APIManager/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "uploadImage(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

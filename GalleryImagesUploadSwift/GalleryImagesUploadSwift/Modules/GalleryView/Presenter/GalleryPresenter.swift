@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class GalleryPresenter: GalleryViewToPresenterProtocol {
 
@@ -24,13 +25,24 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
         interactor?.pulledToRefresh = pulledToRefresh
         interactor?.fetchImagesAPI(cursorNext: cursorNext ?? "")
     }
+    
+    func userDidSelectImageToUpload(image: UIImage) {
+        view?.showLoader()
+        interactor?.uploadImage(image: image)
+    }
 }
 
 
 // MARK:- GalleryInteractorToPresenterProtocol
 extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
     
+    func imageUploadFailed(error: String) {
+        view?.hideLoader()
+        view?.showError(message: error)
+    }
+    
     func imageFetchedFailed(error:String){
+        view?.hideLoader()
         view?.showError(message: error)
     }
     
@@ -68,6 +80,12 @@ extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
             view?.noMoreData()
         }
         
+        view?.hideLoader()
+        view?.reloadCollectionView()
+    }
+    
+    func imageUploaded(imageData: GalleryResource) {
+        self.galleryData?.insert(imageData, at: 0)
         view?.hideLoader()
         view?.reloadCollectionView()
     }

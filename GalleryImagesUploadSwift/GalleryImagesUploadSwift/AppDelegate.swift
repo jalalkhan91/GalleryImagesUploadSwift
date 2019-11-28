@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Load Gallery View and its components
-        let liveNews = GalleryRouter.createGalleryView()
+        let galleryView = GalleryRouter.createGalleryView()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = liveNews
+        window?.rootViewController = UINavigationController.init(rootViewController: galleryView)
         window?.makeKeyAndVisible()
         
         return true

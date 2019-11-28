@@ -27,6 +27,8 @@ protocol GalleryPresenterToViewProtocol: class {
 protocol GalleryInteractorToPresenterProtocol: class {
     func imageFetchedFailed(error:String)
     func galleryUpdated(imagesArray:[GalleryResource], nextCursor:String)
+    func imageUploaded(imageData:GalleryResource)
+    func imageUploadFailed(error:String)
 }
 
 //MARK: Gallery Presenter -> Interactor Protocol
@@ -35,6 +37,7 @@ protocol GalleryPresentorToInteractorProtocol: class {
     var cursor:String? {get set}
     var pulledToRefresh:Bool? {get set}
     func fetchImagesAPI(cursorNext:String)
+    func uploadImage(image: UIImage)
 }
 
 //MARK: Gallery View -> Presenter Protocol
@@ -46,6 +49,7 @@ protocol GalleryViewToPresenterProtocol: class {
     func loadImages(pulledToRefresh:Bool)
     func numberOfItems() -> Int
     func itemAt(index: Int) -> GalleryResource
+    func userDidSelectImageToUpload(image: UIImage)
 
 }
 

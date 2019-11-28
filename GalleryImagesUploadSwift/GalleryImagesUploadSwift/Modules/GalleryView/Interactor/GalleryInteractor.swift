@@ -21,6 +21,7 @@ class GalleryInteractor: GalleryPresentorToInteractorProtocol{
      func convertImageToBase64(image: UIImage) -> String {
         let imageData = image.jpegData(compressionQuality: 0.5)!
         return imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 3))
+//        return imageData.base64EncodedData(options: Data.Base64EncodingOptions.init(rawValue: 3))
     }
     
     func fetchImagesAPI(cursorNext:String){
@@ -33,25 +34,28 @@ class GalleryInteractor: GalleryPresentorToInteractorProtocol{
         
         self.apiManager.getGalleryImages(self.cursor ?? "") {(isSuccessful, errorMessage, arrUsers) in
 
-                if isSuccessful{
-                    self.presenter?.galleryUpdated(imagesArray: arrUsers?.resources ?? [GalleryResource](), nextCursor: arrUsers?.nextCursor ?? "")
-                }
-                else{
-                    self.presenter?.imageFetchedFailed(error: errorMessage ?? "Something went wrong...")
-                }
+            if isSuccessful{
+                self.presenter?.galleryUpdated(imagesArray: arrUsers?.resources ?? [GalleryResource](), nextCursor: arrUsers?.nextCursor ?? "")
             }
+            else{
+                self.presenter?.imageFetchedFailed(error: errorMessage ?? "Something went wrong...")
+            }
+        }
     }
     
     func uploadImage(image: UIImage) {
-//        let base64Image = convertImageToBase64(image: image)
-//
-//        repository?.uploadImage(base64Image: "data:image/jpg;base64,\(base64Image)", success: { (galleryImage) in
-//            self.gallaryLoadState.addNewItem(item: galleryImage)
-//        }, fail: { (error) in
-//            if let error = error {
-//                self.presenter?.errorOccured(error: error)
-//            }
-//        })
-        
+        let base64Image = convertImageToBase64(image: image)
+
+        self.apiManager.uploadImage(base64Image) {(isSuccessful, errorMessage, arrUsers) in
+
+            if isSuccessful{
+//                self.presenter?.galleryUpdated(imagesArray: arrUsers?.resources ?? [GalleryResource](), nextCursor: arrUsers?.nextCursor ?? "")
+                self.presenter?.imageUploaded(imageData: arrUsers!)
+            }
+            else{
+//                self.presenter?.imageFetchedFailed(error: errorMessage ?? "Something went wrong...")
+                self.presenter?.imageUploadFailed(error: errorMessage ?? "Something went wrong...")
+            }
+        }
     }
 }

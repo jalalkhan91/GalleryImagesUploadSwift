@@ -22,9 +22,9 @@ final class APIManager
     //MARK: -  API's
     
     // Get Movies Data API
-    func getGalleryImages(_ next:String, completion : @escaping (_ isSuccessful: Bool, _ errorMessage : String?, _ arrResults : Gallery?) -> Void) {
-        
-        let url = URLs.k_BASE_URL+"\(next)"
+        func getGalleryImages(_ next:String, completion : @escaping (_ isSuccessful: Bool, _ errorMessage : String?, _ arrResults : Gallery?) -> Void) {
+
+        let url = URLs.k_BASE_URL+Endpoints.getImages.rawValue+"\(next)"
         let headers = getApiHeaders()
         
         let reqParams: requestParameters = requestParameters(url: url, method: .get, parameters: nil, headers: headers)
@@ -42,6 +42,34 @@ final class APIManager
             }
             else{
                 completion(false, error?.localizedDescription, nil)
+            }
+        }
+    }
+    
+    // Upload Image API
+    func uploadImage(_ base64Image:String, completion : @escaping (_ isSuccessful: Bool, _ errorMessage : String?, _ arrResults : GalleryResource?) -> Void) {
+
+        let url = URLs.k_BASE_URL+Endpoints.uploadImage.rawValue
+        let headers = getApiHeaders()
+        
+        let params: [String: Any] = ["file": "data:image/jpg;base64,"+base64Image,"upload_preset":"jalalKhan"]
+
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+
+            if response != nil{
+                do {
+
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value as! [String:Any],options: []) {
+
+                        let responseMapped = try JSONDecoder().decode(GalleryResource.self, from: theJSONData)
+                        completion(true,nil,responseMapped)
+                    }
+                } catch {
+                    print(error)
+                    completion(false,error.localizedDescription, nil)
+                }
+            }else{
+                completion(false,response.result.error! as? String,nil)
             }
         }
     }
