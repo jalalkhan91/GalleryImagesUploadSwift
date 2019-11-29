@@ -41,7 +41,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-PB-AHQ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="zGi-PB-AHQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="290"/>
                                                 </imageView>
                                             </subviews>
@@ -87,4 +87,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image-Placeholder" width="800" height="600"/>
+    </resources>
 </document>

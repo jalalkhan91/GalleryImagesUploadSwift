@@ -24,6 +24,7 @@
 		4D8FCE38238E4ED400315E3D /* HttpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FCE36238E4ED400315E3D /* HttpHandler.swift */; };
 		4D8FCE3A238EA05500315E3D /* GalleryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FCE39238EA05500315E3D /* GalleryTableViewCell.swift */; };
 		4D8FCE3C238ED04F00315E3D /* GalleryViewController+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FCE3B238ED04F00315E3D /* GalleryViewController+ImagePicker.swift */; };
+		4D8FCE3E238FF3E200315E3D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FCE3D238FF3E100315E3D /* GalleryViewController.swift */; };
 		80F8EDB11AD8145775EEE950 /* Pods_GalleryImagesUploadSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2639A504891386616ABECCB3 /* Pods_GalleryImagesUploadSwift.framework */; };
 		8D0321D6CFE8DD8A5B1C3338 /* Pods_GalleryImagesUploadSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEAB64DB7FE575D5A6D0213 /* Pods_GalleryImagesUploadSwiftTests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		4D8FCE36238E4ED400315E3D /* HttpHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHandler.swift; sourceTree = "<group>"; };
 		4D8FCE39238EA05500315E3D /* GalleryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryTableViewCell.swift; sourceTree = "<group>"; };
 		4D8FCE3B238ED04F00315E3D /* GalleryViewController+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryViewController+ImagePicker.swift"; sourceTree = "<group>"; };
+		4D8FCE3D238FF3E100315E3D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		535BE1EF8406E87328AFBE47 /* Pods-GalleryImagesUploadSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImagesUploadSwift.release.xcconfig"; path = "Target Support Files/Pods-GalleryImagesUploadSwift/Pods-GalleryImagesUploadSwift.release.xcconfig"; sourceTree = "<group>"; };
 		64BB701F275FC3677236EFFB /* Pods-GalleryImagesUploadSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImagesUploadSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-GalleryImagesUploadSwiftTests/Pods-GalleryImagesUploadSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6723B9108B53B8DD50EBF9C5 /* Pods-GalleryImagesUploadSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImagesUploadSwiftTests.debug.xcconfig"; path = "Target Support Files/Pods-GalleryImagesUploadSwiftTests/Pods-GalleryImagesUploadSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8FCDED238D009F00315E3D /* GalleryImagesUploadSwiftTests.swift */,
+				4D8FCE3D238FF3E100315E3D /* GalleryViewController.swift */,
 				4D8FCDEF238D009F00315E3D /* Info.plist */,
 			);
 			path = GalleryImagesUploadSwiftTests;
@@ -440,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D8FCDEE238D009F00315E3D /* GalleryImagesUploadSwiftTests.swift in Sources */,
+				4D8FCE3E238FF3E200315E3D /* GalleryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

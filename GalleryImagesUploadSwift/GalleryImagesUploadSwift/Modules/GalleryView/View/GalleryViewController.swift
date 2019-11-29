@@ -115,6 +115,8 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
         let item = presenter?.itemAt(index: indexPath.row)
         cell.cellImageView.sd_setImage(with: URL.init(string: (item?.url)!))
         
+        cell.cellImageView.sd_setImage(with: URL.init(string: (item?.url)!), placeholderImage: UIImage(named: "Image-Placeholder"))
+        
         return cell
     }
 }

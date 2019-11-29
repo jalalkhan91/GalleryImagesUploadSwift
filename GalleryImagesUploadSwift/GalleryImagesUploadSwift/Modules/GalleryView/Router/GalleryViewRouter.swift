@@ -13,7 +13,7 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
     
     var presenter: GalleryInteractorToPresenterProtocol?
 
-    class func createGalleryView() -> UIViewController{
+    class func createGalleryView() -> GalleryViewController{
         
         // Initializing Gallery module components
         let view = mainstoryboard.instantiateViewController(withIdentifier: Constants.galleryViewController) as! GalleryViewController

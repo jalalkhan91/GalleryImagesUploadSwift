@@ -55,5 +55,5 @@ protocol GalleryViewToPresenterProtocol: class {
 
 //MARK: Gallery Router Protocol
 protocol GalleryPresenterToRouterProtocol: class {
-    static func createGalleryView() -> UIViewController
+    static func createGalleryView() -> GalleryViewController
 }
