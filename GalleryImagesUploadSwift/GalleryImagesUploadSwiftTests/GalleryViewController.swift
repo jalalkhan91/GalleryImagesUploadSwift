@@ -67,8 +67,14 @@ class GalleryViewControllerTests: XCTestCase {
 
      }
     
+    //
     func testGetGalleryImagesAPI(){
         galleryViewController.presenter?.loadImages(pulledToRefresh: true)
+        
+        // Timer for API response time
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            XCTAssert(self.galleryViewController.presenter?.numberOfItems() ?? 0 > 0)
+        }
     }
     
     func testExample() {

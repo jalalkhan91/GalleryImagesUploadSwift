@@ -12,6 +12,7 @@ import UIKit
 struct Constants {
     static let galleryCellName = "GalleryTableViewCell"
     static let galleryViewController = "GalleryViewController"
+    static let galleryDetailViewController = "GalleryDetailViewController"
 
     static let mainStoryBoard = "Main"
 }

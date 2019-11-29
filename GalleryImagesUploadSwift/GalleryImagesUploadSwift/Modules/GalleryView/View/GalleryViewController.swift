@@ -119,4 +119,8 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.usedDidSelectItem(index: indexPath.row)
+    }
 }

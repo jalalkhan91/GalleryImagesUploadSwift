@@ -12,6 +12,7 @@ import UIKit
 class GalleryRouter: GalleryPresenterToRouterProtocol{
     
     var presenter: GalleryInteractorToPresenterProtocol?
+    weak var view: UIViewController?
 
     class func createGalleryView() -> GalleryViewController{
         
@@ -34,5 +35,14 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
     
     static var mainstoryboard: UIStoryboard{
         return UIStoryboard(name:Constants.mainStoryBoard,bundle: Bundle.main)
+    }
+    
+    func openImageDetailedView(url: URL) {
+        
+        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageUrl: url)
+        
+        DispatchQueue.main.async {
+            self.view?.present(galleryDetailedView, animated: true, completion: nil)
+        }
     }
 }

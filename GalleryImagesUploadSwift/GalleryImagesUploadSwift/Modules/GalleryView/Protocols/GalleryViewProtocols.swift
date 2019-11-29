@@ -50,10 +50,12 @@ protocol GalleryViewToPresenterProtocol: class {
     func numberOfItems() -> Int
     func itemAt(index: Int) -> GalleryResource
     func userDidSelectImageToUpload(image: UIImage)
-
+    func usedDidSelectItem(index: Int)
 }
 
 //MARK: Gallery Router Protocol
 protocol GalleryPresenterToRouterProtocol: class {
     static func createGalleryView() -> GalleryViewController
+    func openImageDetailedView(url: URL)
+    var view: UIViewController? { get set }
 }

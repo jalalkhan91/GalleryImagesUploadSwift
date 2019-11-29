@@ -30,6 +30,11 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
         view?.showLoader()
         interactor?.uploadImage(image: image)
     }
+    
+    func usedDidSelectItem(index: Int) {
+        router?.view = view as! UIViewController
+        router?.openImageDetailedView(url: URL.init(string: galleryData![index].url!)!)
+    }
 }
 
 
