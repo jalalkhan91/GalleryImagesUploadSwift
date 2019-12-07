@@ -21,7 +21,6 @@ class GalleryInteractor: GalleryPresentorToInteractorProtocol{
      func convertImageToBase64(image: UIImage) -> String {
         let imageData = image.jpegData(compressionQuality: 0.5)!
         return imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 3))
-//        return imageData.base64EncodedData(options: Data.Base64EncodingOptions.init(rawValue: 3))
     }
     
     func fetchImagesAPI(cursorNext:String){
@@ -49,11 +48,9 @@ class GalleryInteractor: GalleryPresentorToInteractorProtocol{
         self.apiManager.uploadImage(base64Image) {(isSuccessful, errorMessage, arrUsers) in
 
             if isSuccessful{
-//                self.presenter?.galleryUpdated(imagesArray: arrUsers?.resources ?? [GalleryResource](), nextCursor: arrUsers?.nextCursor ?? "")
                 self.presenter?.imageUploaded(imageData: arrUsers!)
             }
             else{
-//                self.presenter?.imageFetchedFailed(error: errorMessage ?? "Something went wrong...")
                 self.presenter?.imageUploadFailed(error: errorMessage ?? "Something went wrong...")
             }
         }
