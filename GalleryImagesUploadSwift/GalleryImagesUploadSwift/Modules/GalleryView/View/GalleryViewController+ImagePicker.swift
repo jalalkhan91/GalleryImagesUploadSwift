@@ -13,6 +13,7 @@ import MobileCoreServices
 
 extension GalleryViewController {
     
+    
     func openCamera() {
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)) {
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -48,6 +49,27 @@ extension GalleryViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showAlertControllerWithDescription(){
+        let alertController = UIAlertController(title: "Add description", message: "", preferredStyle: UIAlertController.Style.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Description..."
+        }
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+            let firstTextField = alertController.textFields![0] as UITextField
+            
+            self.presenter?.selectedImageDescription = firstTextField.text ?? ""
+            self.presenter?.userDidSelectImageToUpload(image: self.selectedImage!)
+
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK:- UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -56,9 +78,11 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated:true, completion: nil)
         if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String {
             if mediaType  == "public.image" {
-                let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage ?? info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                print(selectedImage)
-                presenter?.userDidSelectImageToUpload(image: selectedImage)
+                let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage ?? info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+                print(image)
+//                presenter?.userDidSelectImageToUpload(image: selectedImage)
+                self.selectedImage = image
+                self.showAlertControllerWithDescription()
             }
         }
     }

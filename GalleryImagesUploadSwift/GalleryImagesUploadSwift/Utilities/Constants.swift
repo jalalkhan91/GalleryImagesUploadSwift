@@ -15,6 +15,8 @@ struct Constants {
     static let galleryDetailViewController = "GalleryDetailViewController"
 
     static let mainStoryBoard = "Main"
+    static let descriptionDictionary = "descriptionDictionary"
+    static let notAvailable = "N/A"
 }
 
 struct URLs {

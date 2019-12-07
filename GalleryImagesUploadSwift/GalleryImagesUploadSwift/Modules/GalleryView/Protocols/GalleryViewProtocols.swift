@@ -21,6 +21,7 @@ protocol GalleryPresenterToViewProtocol: class {
     func noMoreData()
     func resetNoMoreData()
     func stopPullToRefresh()
+
 }
 
 //MARK: Gallery Interactor -> Presenter Protocol
@@ -45,7 +46,8 @@ protocol GalleryViewToPresenterProtocol: class {
     var view: GalleryPresenterToViewProtocol? {get set}
     var interactor: GalleryPresentorToInteractorProtocol? {get set}
     var router: GalleryPresenterToRouterProtocol? {get set}
-    
+    var selectedImageDescription:String?{get set}
+
     func loadImages(pulledToRefresh:Bool)
     func numberOfItems() -> Int
     func itemAt(index: Int) -> GalleryResource

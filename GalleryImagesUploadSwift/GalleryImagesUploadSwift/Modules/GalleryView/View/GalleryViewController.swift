@@ -15,7 +15,7 @@ class GalleryViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonAddImage: UIBarButtonItem!
-
+    var selectedImage:UIImage?
     var presenter: GalleryViewToPresenterProtocol?{
         didSet{
             print("Presenter value changed")
@@ -56,9 +56,7 @@ class GalleryViewController: UIViewController {
     
     
     // MARK: Actions
-//    @IBAction func addButtonPressed(_ sender: Any) {
-//        openImageOptionsPicker(sourceView: sender)
-//    }
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         openImageOptionsPicker(sourceView: sender as! UIBarButtonItem)
     }
@@ -123,4 +121,5 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.usedDidSelectItem(index: indexPath.row)
     }
+
 }

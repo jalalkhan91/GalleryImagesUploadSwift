@@ -18,6 +18,7 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
     var galleryData:[GalleryResource]?
     var cursorNext:String?
     var pulledToRefreshh:Bool?
+    var selectedImageDescription: String?
     
     // MARK: Methods
     func loadImages(pulledToRefresh: Bool) {
@@ -89,9 +90,15 @@ extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
         view?.reloadCollectionView()
     }
     
+    
     func imageUploaded(imageData: GalleryResource) {
+        
+        UserDefaultsHelper.saveDescription(key: imageData.url!, value: self.selectedImageDescription ?? Constants.notAvailable)
+        self.selectedImageDescription = ""
+
         self.galleryData?.insert(imageData, at: 0)
         view?.hideLoader()
         view?.reloadCollectionView()
     }
+
 }
