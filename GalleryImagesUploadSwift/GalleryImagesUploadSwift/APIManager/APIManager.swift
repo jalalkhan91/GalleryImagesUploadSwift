@@ -74,6 +74,39 @@ final class APIManager
         }
     }
     
+    // Upload Image API
+    func deleteImage(_ publicId:String, completion : @escaping (_ isSuccessful: Bool, _ errorMessage : String?, _ arrResults : GalleryResource?) -> Void) {
+
+        let url = URLs.k_BASE_URL+Endpoints.deleteImage.rawValue
+        let headers = getApiHeaders()
+        
+        let params: [String: Any] = ["public_ids": publicId]
+
+        Alamofire.request(url, method: .delete, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+
+            if response != nil{
+                                
+                let responseDict = response.result.value as? [String:Any] ?? [String:Any]()
+                print(responseDict)
+                
+                if responseDict["deleted"] != nil{
+                    let respDict = responseDict["deleted"] as! [String:String]
+                    let status = respDict[publicId] as! String
+                    
+                    if status == "deleted"{
+                        completion(true,"Image delete successfully",nil)
+                    }else if status == "not_found"{
+                        completion(true,"Image not found",nil)
+                    }else{
+                        completion(true,"Something went wrong",nil)
+                    }
+                }
+
+            }else{
+                completion(false,response.result.error! as? String,nil)
+            }
+        }
+    }
     
     // MARK: Get API Headers
     func getApiHeaders() ->  [String:String]{

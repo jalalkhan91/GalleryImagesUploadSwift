@@ -58,6 +58,7 @@ protocol GalleryViewToPresenterProtocol: class {
 //MARK: Gallery Router Protocol
 protocol GalleryPresenterToRouterProtocol: class {
     static func createGalleryView() -> GalleryViewController
-    func openImageDetailedView(url: URL)
+//    func openImageDetailedView(url: URL)
+    func openImageDetailedView(galleryObj: GalleryResource)
     var view: UIViewController? { get set }
 }

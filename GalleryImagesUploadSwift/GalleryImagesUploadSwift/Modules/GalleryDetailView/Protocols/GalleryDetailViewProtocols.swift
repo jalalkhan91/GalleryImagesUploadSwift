@@ -10,5 +10,7 @@ import Foundation
 
 //MARK: Gallery Detail View Router Protocol
 protocol GalleryDetailViewRouterProtocol: class {
-    static func createGalleryDetailedView(selectedImageUrl: URL) -> GalleryDetailViewController
+//    static func createGalleryDetailedView(selectedImageUrl: URL) -> GalleryDetailViewController
+    static func createGalleryDetailedView(selectedImageObj: GalleryResource) -> GalleryDetailViewController
+
 }

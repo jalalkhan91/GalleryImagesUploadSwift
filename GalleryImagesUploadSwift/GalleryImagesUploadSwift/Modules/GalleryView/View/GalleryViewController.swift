@@ -35,11 +35,18 @@ class GalleryViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView.init(frame: .zero)
         
+//        self.customizeUI()
+//        presenter?.loadImages(pulledToRefresh: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.customizeUI()
         presenter?.loadImages(pulledToRefresh: true)
     }
     
     func customizeUI(){
+        
         self.tableView.es.addPullToRefresh {
             [unowned self] in
 

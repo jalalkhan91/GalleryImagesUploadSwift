@@ -28,5 +28,6 @@ struct URLs {
 public enum Endpoints: String {
     case getImages = "resources/image?next_cursor="
     case uploadImage = "image/upload"
+    case deleteImage = "resources/image/upload"
 }
 

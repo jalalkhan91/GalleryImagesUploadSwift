@@ -104,17 +104,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akq-6c-Dql">
+                                <rect key="frame" x="21" y="104" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iZi-DG-pKx"/>
+                                    <constraint firstAttribute="width" constant="45" id="kqI-67-7JD"/>
+                                </constraints>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="nlC-pZ-3kr" eventType="touchUpInside" id="bnl-ev-wtg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="DA9-YI-EI1" firstAttribute="trailing" secondItem="jGL-W9-5p5" secondAttribute="trailing" constant="17" id="7Nz-hu-lGk"/>
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="top" secondItem="jGL-W9-5p5" secondAttribute="bottom" constant="15" id="7R0-Eo-wDG"/>
+                            <constraint firstItem="akq-6c-Dql" firstAttribute="leading" secondItem="DA9-YI-EI1" secondAttribute="leading" constant="21" id="7Yx-v0-ccr"/>
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="trailing" secondItem="DA9-YI-EI1" secondAttribute="trailing" id="9gu-wl-xUK"/>
                             <constraint firstItem="kpe-yU-qHp" firstAttribute="leading" secondItem="DA9-YI-EI1" secondAttribute="leading" constant="30" id="OFO-Ko-VZL"/>
                             <constraint firstItem="jGL-W9-5p5" firstAttribute="top" secondItem="DA9-YI-EI1" secondAttribute="top" constant="16" id="QyD-6l-Loc"/>
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="leading" secondItem="DA9-YI-EI1" secondAttribute="leading" id="dG0-nu-V8d"/>
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="height" secondItem="WmR-oN-EmQ" secondAttribute="height" multiplier="0.4" id="ecU-1Q-mrR"/>
                             <constraint firstItem="DA9-YI-EI1" firstAttribute="trailing" secondItem="kpe-yU-qHp" secondAttribute="trailing" constant="29" id="gu8-oe-8vG"/>
+                            <constraint firstItem="akq-6c-Dql" firstAttribute="top" secondItem="DA9-YI-EI1" secondAttribute="top" constant="16" id="uhW-CT-tId"/>
                             <constraint firstItem="kpe-yU-qHp" firstAttribute="top" secondItem="AXZ-01-kfp" secondAttribute="bottom" constant="35" id="zEJ-u4-ej7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DA9-YI-EI1"/>

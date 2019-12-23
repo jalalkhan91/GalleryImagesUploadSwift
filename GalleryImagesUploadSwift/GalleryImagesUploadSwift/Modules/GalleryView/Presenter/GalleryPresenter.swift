@@ -34,7 +34,9 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
     
     func usedDidSelectItem(index: Int) {
         router?.view = view as! UIViewController
-        router?.openImageDetailedView(url: URL.init(string: galleryData![index].url!)!)
+//        router?.openImageDetailedView(url: URL.init(string: galleryData![index].url!)!)
+        router?.openImageDetailedView(galleryObj:galleryData![index])
+
     }
 }
 
