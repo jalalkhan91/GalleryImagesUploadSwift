@@ -115,6 +115,20 @@
                                     <action selector="deleteButtonPressed:" destination="nlC-pZ-3kr" eventType="touchUpInside" id="bnl-ev-wtg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBP-sF-FHT">
+                                <rect key="frame" x="107" y="819" width="200" height="45"/>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.81434893735479441" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="u8t-IZ-ym6"/>
+                                    <constraint firstAttribute="width" constant="200" id="y1d-WB-C7c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Set Profile Picture"/>
+                                <connections>
+                                    <action selector="setProfilePicturePressed:" destination="nlC-pZ-3kr" eventType="touchUpInside" id="262-cG-NO2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -127,6 +141,8 @@
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="leading" secondItem="DA9-YI-EI1" secondAttribute="leading" id="dG0-nu-V8d"/>
                             <constraint firstItem="AXZ-01-kfp" firstAttribute="height" secondItem="WmR-oN-EmQ" secondAttribute="height" multiplier="0.4" id="ecU-1Q-mrR"/>
                             <constraint firstItem="DA9-YI-EI1" firstAttribute="trailing" secondItem="kpe-yU-qHp" secondAttribute="trailing" constant="29" id="gu8-oe-8vG"/>
+                            <constraint firstItem="QBP-sF-FHT" firstAttribute="centerX" secondItem="WmR-oN-EmQ" secondAttribute="centerX" id="hmo-BO-vdk"/>
+                            <constraint firstAttribute="bottom" secondItem="QBP-sF-FHT" secondAttribute="bottom" constant="32" id="tJ6-co-G8W"/>
                             <constraint firstItem="akq-6c-Dql" firstAttribute="top" secondItem="DA9-YI-EI1" secondAttribute="top" constant="16" id="uhW-CT-tId"/>
                             <constraint firstItem="kpe-yU-qHp" firstAttribute="top" secondItem="AXZ-01-kfp" secondAttribute="bottom" constant="35" id="zEJ-u4-ej7"/>
                         </constraints>
@@ -134,6 +150,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="buttonSetProfilePicture" destination="QBP-sF-FHT" id="5q1-lk-qdP"/>
                         <outlet property="imageView" destination="AXZ-01-kfp" id="5uM-cG-xkC"/>
                         <outlet property="imageViewDescription" destination="kpe-yU-qHp" id="Lcc-Z2-Afx"/>
                     </connections>

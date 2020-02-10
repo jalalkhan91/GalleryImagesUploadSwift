@@ -22,7 +22,7 @@ struct Gallery : Codable {
 }
 
 
-struct GalleryResource : Codable {
+struct GalleryResource {
 
     let bytes : Int?
     let createdAt : String?
@@ -35,8 +35,9 @@ struct GalleryResource : Codable {
     let url : String?
     let version : Int?
     let width : Int?
+}
 
-
+extension GalleryResource: Codable {
     enum CodingKeys: String, CodingKey {
         case bytes = "bytes"
         case createdAt = "created_at"
@@ -64,6 +65,5 @@ struct GalleryResource : Codable {
         version = try values.decodeIfPresent(Int.self, forKey: .version)
         width = try values.decodeIfPresent(Int.self, forKey: .width)
     }
-
 
 }

@@ -17,6 +17,8 @@ struct Constants {
     static let mainStoryBoard = "Main"
     static let descriptionDictionary = "descriptionDictionary"
     static let notAvailable = "N/A"
+    
+    static let profilePicture = "profilePicture"
 }
 
 struct URLs {

@@ -41,6 +41,7 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
         
 //        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageUrl: url)
         let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageObj: galleryObj)
+        galleryDetailedView.parentVC = self.view as? GalleryViewController
 
         DispatchQueue.main.async {
             self.view?.present(galleryDetailedView, animated: true, completion: nil)

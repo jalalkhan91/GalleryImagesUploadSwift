@@ -34,9 +34,6 @@ class GalleryViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView.init(frame: .zero)
-        
-//        self.customizeUI()
-//        presenter?.loadImages(pulledToRefresh: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,6 +139,8 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.cellImageView.sd_setImage(with: URL.init(string: (item?.url)!), placeholderImage: UIImage(named: "Image-Placeholder"))
         
+        self.highlightProfilePicture(cell: cell, item: item!)
+
         return cell
     }
     
@@ -149,4 +148,28 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
         presenter?.usedDidSelectItem(index: indexPath.row)
     }
 
+}
+
+extension GalleryViewController{
+    
+    func highlightProfilePicture(cell: GalleryTableViewCell, item: GalleryResource){
+        
+        let profilePicId = UserDefaults.standard.value(forKey: "profilePicture") as? String ?? ""
+        
+        if profilePicId != ""{
+            if profilePicId == item.publicId{
+                cell.layer.borderWidth = 10.0
+                cell.layer.borderColor = UIColor.green.cgColor
+                cell.layer.cornerRadius = 5.0
+                cell.layoutIfNeeded()
+                cell.clipsToBounds = true
+            }else{
+                cell.layer.borderWidth = 0.0
+                cell.layer.borderColor = UIColor.clear.cgColor
+                cell.layer.cornerRadius = 0.0
+                cell.layoutIfNeeded()
+                cell.clipsToBounds = true
+            }
+        }
+    }
 }
