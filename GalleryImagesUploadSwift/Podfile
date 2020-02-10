@@ -11,6 +11,7 @@ target 'GalleryImagesUploadSwift' do
   pod 'ESPullToRefresh'
   pod 'SVProgressHUD'
   pod 'SDWebImage'
+  pod 'GBHFacebookImagePicker'
   
   target 'GalleryImagesUploadSwiftTests' do
     inherit! :search_paths

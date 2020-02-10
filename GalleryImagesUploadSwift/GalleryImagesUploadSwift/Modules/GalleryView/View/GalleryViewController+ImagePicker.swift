@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import GBHFacebookImagePicker
 
 
 extension GalleryViewController {
@@ -34,12 +35,19 @@ extension GalleryViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    func openFacebook() {
+        let picker = FacebookImagePicker()
+        picker.presentFacebookAlbumImagePicker(from: self, delegate: self)
+    }
+    
     func openImageOptionsPicker(sourceView: UIBarButtonItem) {
         
         let alert = UIAlertController.actionSheetImageUpload(title: "Choose image from:", message: "Images you upload will not be shared with any third party platforms", gallery: { _ in
             self.openGallary()
-        }) { _ in
+        }, camera: {_ in
             self.openCamera()
+        }) { _ in
+            self.openFacebook()
         }
         
         self.present(alert, animated: true, completion: nil)
@@ -64,3 +72,32 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
+extension GalleryViewController: FacebookImagePickerDelegate{
+    func facebookImagePicker(imagePicker: UIViewController,
+                             successImageModels: [FacebookImage],
+                             errorImageModels: [FacebookImage],
+                             errors: [Error?]) {
+        // Append selected image(s)
+        // Do what you want with selected image
+//        self.imageModels.append(contentsOf: successImageModels)
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let image = successImageModels.first?.image else {return}
+        self.selectedImage = image
+        self.showAlertControllerWithDescription()
+    }
+
+    func facebookImagePicker(imagePicker: UIViewController, didFailWithError error: Error?) {
+        print("Cancelled Facebook Album picker with error")
+        print(error.debugDescription)
+    }
+
+    // Optional
+    func facebookImagePicker(didCancelled imagePicker: UIViewController) {
+        print("Cancelled Facebook Album picker")
+    }
+
+    // Optional
+    func facebookImagePickerDismissed() {
+        print("Picker dismissed")
+    }
+}

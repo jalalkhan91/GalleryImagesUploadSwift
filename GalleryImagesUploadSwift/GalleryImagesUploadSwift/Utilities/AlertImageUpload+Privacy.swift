@@ -25,12 +25,13 @@ extension UIAlertController{
     static func actionSheetImageUpload(title:String,
                                        message:String,
                                        gallery: @escaping (UIAlertAction)-> Void,
-                                       camera: @escaping (UIAlertAction)-> Void) -> UIAlertController{
+                                       camera: @escaping (UIAlertAction)-> Void, facebook: @escaping (UIAlertAction)-> Void) -> UIAlertController{
         return self.actionSheet(title: title,
                          message: message,
                          actions: [
                             UIAlertAction(title: "Camera", style: .default, handler: camera),
                             UIAlertAction(title: "Gallery", style: .default, handler: gallery),
+                            UIAlertAction(title: "Facebook", style: .default, handler: facebook),
                             UIAlertAction(title: "Cancel", style: .destructive, handler: nil),
                         ])
         

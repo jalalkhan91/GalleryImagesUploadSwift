@@ -1,6 +1,19 @@
 PODS:
   - Alamofire (4.9.1)
   - ESPullToRefresh (2.9)
+  - FBSDKCoreKit (5.14.0):
+    - FBSDKCoreKit/Basics (= 5.14.0)
+    - FBSDKCoreKit/Core (= 5.14.0)
+  - FBSDKCoreKit/Basics (5.14.0)
+  - FBSDKCoreKit/Core (5.14.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.14.0):
+    - FBSDKLoginKit/Login (= 5.14.0)
+  - FBSDKLoginKit/Login (5.14.0):
+    - FBSDKCoreKit (~> 5.0)
+  - GBHFacebookImagePicker (3.2.1):
+    - FBSDKCoreKit (~> 5.14.0)
+    - FBSDKLoginKit (~> 5.14.0)
   - SDWebImage (5.3.2):
     - SDWebImage/Core (= 5.3.2)
   - SDWebImage/Core (5.3.2)
@@ -9,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - ESPullToRefresh
+  - GBHFacebookImagePicker
   - SDWebImage
   - SVProgressHUD
 
@@ -16,15 +30,21 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - ESPullToRefresh
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - GBHFacebookImagePicker
     - SDWebImage
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   ESPullToRefresh: ce058a36454a5032519cc9d8b45da217728cf104
+  FBSDKCoreKit: a72c8d2c42aa4c4d5eaa5f160be9580750f70d2e
+  FBSDKLoginKit: 89f3c2f8be892ec8a5359619a8ff657578d47604
+  GBHFacebookImagePicker: 321d69e9b4dbfa2a97fbad8d0d78c808f31dd2f8
   SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: bb811729354443084aad072b6ffebc70f3e108f4
+PODFILE CHECKSUM: 42744e8d5531cb93149ae2a359c3ac6eb30960d3
 
 COCOAPODS: 1.8.4
