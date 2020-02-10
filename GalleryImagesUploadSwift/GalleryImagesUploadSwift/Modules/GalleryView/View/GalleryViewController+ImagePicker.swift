@@ -13,6 +13,7 @@ import MobileCoreServices
 
 extension GalleryViewController {
     
+    
     func openCamera() {
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)) {
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -43,6 +44,8 @@ extension GalleryViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
 }
 
 // MARK:- UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -51,9 +54,11 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated:true, completion: nil)
         if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String {
             if mediaType  == "public.image" {
-                let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage ?? info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                print(selectedImage)
-                presenter?.userDidSelectImageToUpload(image: selectedImage)
+                let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage ?? info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+                print(image)
+//                presenter?.userDidSelectImageToUpload(image: selectedImage)
+                self.selectedImage = image
+                self.showAlertControllerWithDescription()
             }
         }
     }

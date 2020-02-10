@@ -15,7 +15,7 @@ class GalleryViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonAddImage: UIBarButtonItem!
-
+    var selectedImage:UIImage?
     var presenter: GalleryViewToPresenterProtocol?{
         didSet{
             print("Presenter value changed")
@@ -35,11 +35,18 @@ class GalleryViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView.init(frame: .zero)
         
+//        self.customizeUI()
+//        presenter?.loadImages(pulledToRefresh: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.customizeUI()
         presenter?.loadImages(pulledToRefresh: true)
     }
     
     func customizeUI(){
+        
         self.tableView.es.addPullToRefresh {
             [unowned self] in
 
@@ -56,13 +63,31 @@ class GalleryViewController: UIViewController {
     
     
     // MARK: Actions
-//    @IBAction func addButtonPressed(_ sender: Any) {
-//        openImageOptionsPicker(sourceView: sender)
-//    }
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         openImageOptionsPicker(sourceView: sender as! UIBarButtonItem)
     }
     
+    func showAlertControllerWithDescription(){
+        let alertController = UIAlertController(title: "Add description", message: "", preferredStyle: UIAlertController.Style.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Description..."
+        }
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+            let firstTextField = alertController.textFields![0] as UITextField
+            
+            self.presenter?.selectedImageDescription = firstTextField.text ?? ""
+            self.presenter?.userDidSelectImageToUpload(image: self.selectedImage!)
+
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 
@@ -123,4 +148,5 @@ extension GalleryViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.usedDidSelectItem(index: indexPath.row)
     }
+
 }

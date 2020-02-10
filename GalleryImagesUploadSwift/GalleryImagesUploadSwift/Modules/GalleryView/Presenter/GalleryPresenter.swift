@@ -18,6 +18,7 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
     var galleryData:[GalleryResource]?
     var cursorNext:String?
     var pulledToRefreshh:Bool?
+    var selectedImageDescription: String?
     
     // MARK: Methods
     func loadImages(pulledToRefresh: Bool) {
@@ -33,7 +34,9 @@ class GalleryPresenter: GalleryViewToPresenterProtocol {
     
     func usedDidSelectItem(index: Int) {
         router?.view = view as! UIViewController
-        router?.openImageDetailedView(url: URL.init(string: galleryData![index].url!)!)
+//        router?.openImageDetailedView(url: URL.init(string: galleryData![index].url!)!)
+        router?.openImageDetailedView(galleryObj:galleryData![index])
+
     }
 }
 
@@ -89,9 +92,15 @@ extension GalleryPresenter: GalleryInteractorToPresenterProtocol {
         view?.reloadCollectionView()
     }
     
+    
     func imageUploaded(imageData: GalleryResource) {
+        
+        UserDefaultsHelper.saveDescription(key: imageData.url!, value: self.selectedImageDescription ?? Constants.notAvailable)
+        self.selectedImageDescription = ""
+
         self.galleryData?.insert(imageData, at: 0)
         view?.hideLoader()
         view?.reloadCollectionView()
     }
+
 }

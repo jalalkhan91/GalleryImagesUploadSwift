@@ -13,7 +13,8 @@ import Foundation
 class GalleryViewControllerTests: XCTestCase {
 
     var galleryViewController:GalleryViewController!
-    
+    var apiManager = APIManager.shared
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
@@ -33,12 +34,15 @@ class GalleryViewControllerTests: XCTestCase {
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
+        
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    //MARK:- TableView Delegate/DataSource Tests
+
     func testTableViewIsNotNilAfterViewDidLoad() {
         XCTAssertNotNil(galleryViewController.tableView)
     }
@@ -67,26 +71,54 @@ class GalleryViewControllerTests: XCTestCase {
 
      }
     
-    //
+    //MARK:- Get Gallery Images API Test
     func testGetGalleryImagesAPI(){
-        galleryViewController.presenter?.loadImages(pulledToRefresh: true)
         
-        // Timer for API response time
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            XCTAssert(self.galleryViewController.presenter?.numberOfItems() ?? 0 > 0)
+        let expectation = XCTestExpectation.init(description: "Image fetch successful")
+
+        self.apiManager.getGalleryImages("") {(isSuccessful, errorMessage, responseArray) in
+
+            if isSuccessful{
+                expectation.fulfill()
+            }else{
+                XCTAssert(false)
+            }
         }
+        wait(for: [expectation], timeout: 10)
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    //MARK:- Upload Image API Test
+    func testUplopadImage(){
+        
+        let expectation = XCTestExpectation.init(description: "Image upload successful")
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let imageData = UIImage.init(named: "XCTestImage")!.jpegData(compressionQuality: 0.5)!
+        let base64Image = imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 3))
+        
+        self.apiManager.uploadImage(base64Image) {(isSuccessful, errorMessage, response) in
+            if isSuccessful{
+                UserDefaultsHelper.saveDescription(key: String((response?.url)!), value: "XCTest Image")
+                expectation.fulfill()
+            }
+            else{
+                XCTAssert(false)
+            }
         }
+        wait(for: [expectation], timeout: 10)
+
+    }
+    
+    func testImageDescriptionCalled() {
+        let controller = GalleryViewControllerMock()
+        
+        var info:[UIImagePickerController.InfoKey: Any] = [:]
+        info[UIImagePickerController.InfoKey.mediaType] = "public.image"
+        info[UIImagePickerController.InfoKey.editedImage] = UIImage()
+        info[UIImagePickerController.InfoKey.originalImage] = UIImage()
+        
+        controller.imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: info)
+        
+        XCTAssertEqual(controller.numberOfTimesShowAlertDescriptionCalled, 1)
     }
 
 }

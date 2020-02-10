@@ -15,6 +15,8 @@ struct Constants {
     static let galleryDetailViewController = "GalleryDetailViewController"
 
     static let mainStoryBoard = "Main"
+    static let descriptionDictionary = "descriptionDictionary"
+    static let notAvailable = "N/A"
 }
 
 struct URLs {
@@ -26,5 +28,6 @@ struct URLs {
 public enum Endpoints: String {
     case getImages = "resources/image?next_cursor="
     case uploadImage = "image/upload"
+    case deleteImage = "resources/image/upload"
 }
 

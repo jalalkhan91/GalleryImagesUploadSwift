@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GalleryRouter: GalleryPresenterToRouterProtocol{
-    
+
     var presenter: GalleryInteractorToPresenterProtocol?
     weak var view: UIViewController?
 
@@ -37,10 +37,11 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
         return UIStoryboard(name:Constants.mainStoryBoard,bundle: Bundle.main)
     }
     
-    func openImageDetailedView(url: URL) {
+    func openImageDetailedView(galleryObj: GalleryResource) {
         
-        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageUrl: url)
-        
+//        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageUrl: url)
+        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageObj: galleryObj)
+
         DispatchQueue.main.async {
             self.view?.present(galleryDetailedView, animated: true, completion: nil)
         }

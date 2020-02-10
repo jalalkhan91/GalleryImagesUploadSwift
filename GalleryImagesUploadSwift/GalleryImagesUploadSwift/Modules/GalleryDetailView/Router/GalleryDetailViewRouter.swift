@@ -11,10 +11,12 @@ import UIKit
 
 class GalleryDetailViewRouter: GalleryDetailViewRouterProtocol{
     
-    static func createGalleryDetailedView(selectedImageUrl: URL) -> GalleryDetailViewController{
+//    static func createGalleryDetailedView(selectedImageUrl: URL) -> GalleryDetailViewController{
+
+    static func createGalleryDetailedView(selectedImageObj: GalleryResource) -> GalleryDetailViewController{
 
         let view = mainstoryboard.instantiateViewController(withIdentifier: Constants.galleryDetailViewController) as! GalleryDetailViewController
-        view.imageURL = selectedImageUrl
+        view.galleryObj = selectedImageObj
         
         return view
     }
