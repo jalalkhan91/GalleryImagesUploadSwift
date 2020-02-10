@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D4CD1C523F161E600FCBE8F /* AlertImageUpload+Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4CD1C423F161E600FCBE8F /* AlertImageUpload+Privacy.swift */; };
+		4D4CD1C723F1648B00FCBE8F /* ImageUploadActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4CD1C623F1648B00FCBE8F /* ImageUploadActionSheetTests.swift */; };
 		4D5795B423911DD10052324B /* GalleryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5795B323911DD10052324B /* GalleryDetailViewController.swift */; };
 		4D5795B623911F680052324B /* GalleryDetailViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5795B523911F680052324B /* GalleryDetailViewRouter.swift */; };
 		4D5795B923911FB70052324B /* GalleryDetailViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5795B823911FB70052324B /* GalleryDetailViewProtocols.swift */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		2639A504891386616ABECCB3 /* Pods_GalleryImagesUploadSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GalleryImagesUploadSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46AD7034B1F8FA3F6515579D /* Pods-GalleryImagesUploadSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImagesUploadSwift.debug.xcconfig"; path = "Target Support Files/Pods-GalleryImagesUploadSwift/Pods-GalleryImagesUploadSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		4D4CD1C423F161E600FCBE8F /* AlertImageUpload+Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertImageUpload+Privacy.swift"; sourceTree = "<group>"; };
+		4D4CD1C623F1648B00FCBE8F /* ImageUploadActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadActionSheetTests.swift; sourceTree = "<group>"; };
 		4D5795B323911DD10052324B /* GalleryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailViewController.swift; sourceTree = "<group>"; };
 		4D5795B523911F680052324B /* GalleryDetailViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailViewRouter.swift; sourceTree = "<group>"; };
 		4D5795B823911FB70052324B /* GalleryDetailViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailViewProtocols.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			children = (
 				4D8FCDED238D009F00315E3D /* GalleryImagesUploadSwiftTests.swift */,
 				4D8FCE3D238FF3E100315E3D /* GalleryViewController.swift */,
+				4D4CD1C623F1648B00FCBE8F /* ImageUploadActionSheetTests.swift */,
 				4D8FCDEF238D009F00315E3D /* Info.plist */,
 			);
 			path = GalleryImagesUploadSwiftTests;
@@ -191,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8FCE0C238D19EE00315E3D /* UIViewController+Helpers.swift */,
+				4D4CD1C423F161E600FCBE8F /* AlertImageUpload+Privacy.swift */,
 				4D8FCE0E238D2B5200315E3D /* Constants.swift */,
 			);
 			path = Utilities;
@@ -458,6 +464,7 @@
 				4D8FCE37238E4ED400315E3D /* APIManager.swift in Sources */,
 				4D8FCE38238E4ED400315E3D /* HttpHandler.swift in Sources */,
 				4D5795B423911DD10052324B /* GalleryDetailViewController.swift in Sources */,
+				4D4CD1C523F161E600FCBE8F /* AlertImageUpload+Privacy.swift in Sources */,
 				4D8FCE05238D0E6C00315E3D /* GalleryViewController.swift in Sources */,
 				4D8FCE09238D0F7100315E3D /* GalleryPresenter.swift in Sources */,
 				4D8FCDD7238D009D00315E3D /* AppDelegate.swift in Sources */,
@@ -478,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D4CD1C723F1648B00FCBE8F /* ImageUploadActionSheetTests.swift in Sources */,
 				4D8FCDEE238D009F00315E3D /* GalleryImagesUploadSwiftTests.swift in Sources */,
 				4D8FCE3E238FF3E200315E3D /* GalleryViewController.swift in Sources */,
 			);

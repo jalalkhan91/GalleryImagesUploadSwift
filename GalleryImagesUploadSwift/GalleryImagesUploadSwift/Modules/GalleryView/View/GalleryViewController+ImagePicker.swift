@@ -34,17 +34,12 @@ extension GalleryViewController {
     }
     
     func openImageOptionsPicker(sourceView: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Choose image from:", message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+        let alert = UIAlertController.actionSheetImageUpload(title: "Choose image from:", message: "Images you upload will not be shared with any third party platforms", gallery: { _ in
             self.openGallary()
-        }))
-        
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        }) { _ in
+            self.openCamera()
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
