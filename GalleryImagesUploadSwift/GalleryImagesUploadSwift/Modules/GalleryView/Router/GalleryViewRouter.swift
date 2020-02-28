@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class GalleryRouter: GalleryPresenterToRouterProtocol{
+class GalleryRouter: GalleryPresenterToRouterProtocol{    
 
     var presenter: GalleryInteractorToPresenterProtocol?
+    var detailPresenter: GalleryDetailInteractorToPresenterProtocol?
     weak var view: UIViewController?
 
     class func createGalleryView() -> GalleryViewController{
@@ -38,11 +39,19 @@ class GalleryRouter: GalleryPresenterToRouterProtocol{
     }
     
     func openImageDetailedView(galleryObj: GalleryResource) {
-        
+
 //        let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageUrl: url)
         let galleryDetailedView = GalleryDetailViewRouter.createGalleryDetailedView(selectedImageObj: galleryObj)
         galleryDetailedView.parentVC = self.view as? GalleryViewController
 
+        let presenter: GalleryDetailViewToPresenterProtocol & GalleryDetailInteractorToPresenterProtocol = GalleryDetailPresenter()
+        let interactor: GalleryDetailPresentorToInteractorProtocol = GalleryDetailInteractor()
+
+        galleryDetailedView.presenter = presenter
+        presenter.view = galleryDetailedView
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        
         DispatchQueue.main.async {
             self.view?.present(galleryDetailedView, animated: true, completion: nil)
         }

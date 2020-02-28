@@ -19,6 +19,12 @@ class GalleryDetailViewController: UIViewController {
     var parentVC: GalleryViewController?
     var defaults = UserDefaults.standard
     
+    var presenter: GalleryDetailViewToPresenterProtocol?{
+        didSet{
+            print("Presenter value changed")
+            print(self.presenter as Any)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,27 +64,51 @@ class GalleryDetailViewController: UIViewController {
         
         self.showHud()
 
-        self.apiManager.deleteImage((self.galleryObj?.publicId)!) {(isSuccessful, errorMessage, response) in
-            
-            self.hideHud()
-
-            if isSuccessful{
-                self.showAlert(title: "Alert!", message: errorMessage ?? "")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    DispatchQueue.main.async {
-                        self.presentingViewController?.viewWillAppear(true)
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }else{
-                self.showAlert(title: "Error!", message: errorMessage ?? "")
-            }
-        }
+        presenter?.deleteImageAPI(publicId: (self.galleryObj?.publicId)!)
+        
+//        self.apiManager.deleteImage((self.galleryObj?.publicId)!) {(isSuccessful, errorMessage, response) in
+//
+//            self.hideHud()
+//
+//            if isSuccessful{
+//                self.showAlert(title: "Alert!", message: errorMessage ?? "")
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                    DispatchQueue.main.async {
+//                        self.presentingViewController?.viewWillAppear(true)
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
+//                }
+//            }else{
+//                self.showAlert(title: "Error!", message: errorMessage ?? "")
+//            }
+//        }
     }
     
     @IBAction func setProfilePicturePressed(_ sender: Any) {
         defaults.set((self.galleryObj?.publicId)!, forKey: Constants.profilePicture)
         self.buttonSetProfilePicture.isEnabled = false
+    }
+    
+    
+}
+
+
+extension GalleryDetailViewController:GalleryDetailPresenterToViewProtocol{
+    func showDeleteImageSuccessAlert(msg:String) {
+        
+        self.hideHud()
+        self.showAlert(title: "Alert!", message: msg)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.async {
+                self.parentVC?.viewWillAppear(true)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func showErrorAlert(msg:String) {
+        self.hideHud()
+        self.showAlert(title: "Error!", message: msg )
     }
     
     
